@@ -12,4 +12,6 @@ Passed:
 
 Browser assets: Shinylive 0.10.12, explicitly selected in `build.R`. The application uses base R and Shiny; no GIS package or API key is needed. The download buttons include Posit's documented Shinylive/Chromium compatibility workaround.
 
-GitHub Pages publication has not been run. The workflow must be tested in the destination repository after Pages is enabled. There are no real-data accuracy claims.
+GitHub Pages publication completed on 29 October 2026. The [successful build and deployment](https://github.com/shunchonabayashi/hotspot-explorer/actions/runs/40773555438) ran the R model checks and static export using Ubuntu 24.04 and R 4.4.3, with automatic R/system dependency installation.
+
+The public site at https://shunchonabayashi.github.io/hotspot-explorer/ was tested in a fresh Edge session: pressure selection, cutoff changes, reset, both downloads and mobile-width checks all passed. No login is required to view the demonstration. There are no real-data accuracy claims.
