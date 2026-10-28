@@ -1,0 +1,11 @@
+source('app/model.R')
+d <- assess(district_data(), 90)
+stopifnot(identical(d$hotspot, c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE)))
+stopifnot(d$investment_gap[2] == 'Review coverage', d$investment_gap[3] == 'Potential gap flagged')
+# Inclusive threshold; changing screening must not change project evidence.
+stopifnot(assess(district_data(), 98)$hotspot[3], !assess(district_data(), 99)$hotspot[3])
+stopifnot(assess(district_data(), 85)$investment_gap[4] == 'Potential gap flagged')
+stopifnot(identical(assess(district_data(), 99)$coverage, d$coverage))
+out <- assessment_export(d, 90, '2026-10-29 00:00 UTC')
+stopifnot(nrow(out) == 6, all(out$cutoff_percentile == 90), all(grepl('FICTIONAL', out$data_status)))
+cat('District A screening and export checks passed.\n')
