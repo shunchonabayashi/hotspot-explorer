@@ -2,6 +2,8 @@
 
 A small R Shiny prototype, exportable with Shinylive for GitHub Pages. Prepared for team discussion on 29 October 2026.
 
+[Open the published Explorer](https://shunchonabayashi.github.io/hotspot-explorer/)
+
 **All data, projects, costs and boundaries are fictional.** This is a demonstration of the assessment workflow, not a real risk assessment or investment recommendation.
 
 ## Features
@@ -40,7 +42,7 @@ The supplied `site/` folder is already exported for local preview and is exclude
 3. Push the files to `main`, or run **Actions → Build and publish Explorer → Run workflow**.
 4. The workflow installs the build packages, runs the model checks, exports `app/` into a static `site/`, and deploys it. The deployment shows the resulting Pages URL.
 
-No external Shiny server, secrets or API keys are required. Publishing makes the included fictional data and code downloadable by visitors. Repository/organization Pages policies may affect availability. This folder is prepared for publication; no repository has been created and no live site has been published automatically.
+No external Shiny server, secrets or API keys are required. Publishing makes the included fictional data and code downloadable by visitors. Repository/organization Pages policies may affect availability. This prototype is published from [shunchonabayashi/hotspot-explorer](https://github.com/shunchonabayashi/hotspot-explorer). The steps above also apply when making your own copy.
 
 ## Interpretation and limits
 
