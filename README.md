@@ -2,6 +2,8 @@
 
 [Open the published Explorer](https://shunchonabayashi.github.io/hotspot-explorer/)
 
+The app requests `noindex, nofollow, noarchive` from search engines. It remains public and accessible through its link; these settings are not authentication or a guarantee of removal from search results. Crawling is left allowed so engines can read the directive. The public GitHub repository remains separately discoverable.
+
 An R Shiny / Shinylive real-data pilot for **Sunamganj, Bangladesh**, and four neighbouring Bangladesh districts: Habiganj, Kishoreganj, Netrakona and Sylhet. Prepared 29 October 2026. It replaces the fictional District A demonstration.
 
 ## What is real and what is assessed?

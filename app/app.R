@@ -19,7 +19,8 @@ source_links <- function() tagList(
   p(a('World Bank Official Boundaries', href = 'https://datacatalog.worldbank.org/search/dataset/0038272/world-bank-official-boundaries', target = '_blank', rel = 'noopener')),
   p('Attribution: World Bank Space2Stats / WorldPop / Fathom v3; World Bank Official Boundaries. Both published datasets are CC BY 4.0. This pilot recalculates shares and ranks and simplifies map geometry.'))
 ui <- fluidPage(
-  tags$head(tags$meta(name = 'viewport', content = 'width=device-width, initial-scale=1'), tags$link(rel = 'stylesheet', href = 'style.css')),
+  tags$head(tags$meta(name = 'viewport', content = 'width=device-width, initial-scale=1'),
+    tags$meta(name = 'robots', content = 'noindex, nofollow, noarchive'), tags$link(rel = 'stylesheet', href = 'style.css')),
   div(class = 'masthead', div(class = 'eyebrow', 'REAL-DATA PILOT | BANGLADESH'), h1('Food–Energy–Infrastructure Hotspot Explorer'), p('Sunamganj and neighbouring districts • Public modelled flood-exposure data')),
   div(class = 'demo-banner', strong('Real data, limited assessment'), ' — 2020 population exposed to modelled flooding. Future climate changes, service disruption and investment gaps are not yet assessed.'),
   div(class = 'workspace',
