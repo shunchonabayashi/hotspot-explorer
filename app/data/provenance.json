@@ -1,0 +1,40 @@
+{
+  "prepared_utc": "2026-10-28T23:30:19.926079+00:00",
+  "country": "Bangladesh",
+  "default_district": "Sunamganj",
+  "default_id": "BGD008003",
+  "district_count": 64,
+  "pilot_ids": [
+    "BGD008003",
+    "BGD003005",
+    "BGD005003",
+    "BGD008001",
+    "BGD008004"
+  ],
+  "adjacency": "Shared boundary segment >100 m in UTM 46N, computed before simplification; Bangladesh neighbours only.",
+  "flood_url": "https://datacatalogfiles.worldbank.org/ddh-published/0066820/DR0095355/adm2_flood_exposure_15cm_1in100.csv",
+  "flood_source_sha256": "e4e56fd19475236442a6514a2dcebb01a8b0762fa4d7fb4be88fd042ad120f64",
+  "flood_catalog": "https://datacatalog.worldbank.org/search/dataset/0066820/space2stats-database",
+  "flood_metadata": "https://raw.githubusercontent.com/worldbank/DECAT_Space2Stats/main/space2stats_api/src/space2stats_ingest/METADATA/stac/space2stats-collection/flood_exposure_15cm_1in100/flood_exposure_15cm_1in100.json",
+  "boundary_query_url": "https://services.arcgis.com/iQ1dY19aHwbSDYIF/ArcGIS/rest/services/World_Bank_Global_Administrative_Divisions/FeatureServer/3/query?where=WB_A3%3D%27BGD%27&outFields=ADM2CD_c%2CNAM_0%2CNAM_1%2CNAM_2&outSR=4326&f=geojson&returnGeometry=true",
+  "boundary_source_sha256": "4e0342700531af012ca254894b69740947bfbe5f7604d7584b3dabd4dae94a0c",
+  "geometry_repairs": [
+    "BGD004001"
+  ],
+  "boundary_catalog": "https://datacatalog.worldbank.org/search/dataset/0038272/world-bank-official-boundaries",
+  "license": "World Bank Space2Stats and Official Boundaries: CC BY 4.0. Derived map and share calculations by this pilot.",
+  "population_year": 2020,
+  "hazard": "Modelled flood depth >15 cm, 1-in-100 return period; Fathom v3 / WorldPop.",
+  "hazard_reference_year": "Not specified in the ADM2 CSV; not represented as a 2050 projection or observed event.",
+  "processing": "Joined by ADM2CD_c. District share = 100 * pop_flood / pop. The supplied pop_flood_pct column is retained for audit but not used: district ratios are recalculated from summed counts.",
+  "resolution": "Space2Stats H3 level 6 aggregates (~36 km2 cells); the detailed map is not evidence of equally detailed exposure estimates.",
+  "vintage_note": "June 2025 exposure download matched by district code to the boundary service retrieved for this pilot. Code coverage is verified; exact boundary-vintage equivalence is not established.",
+  "not_assessed": [
+    "future climate change",
+    "market access and service disruption",
+    "AIIB project coverage",
+    "investment gaps",
+    "costs",
+    "other five pressures"
+  ]
+}
