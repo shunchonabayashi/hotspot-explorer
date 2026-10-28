@@ -11,6 +11,8 @@
 
 ## Application checks
 
-Regular Shiny starts and renders the source-based map and tables. Browser-only Shinylive interaction and download checks are performed before publication; the public URL is rechecked after deployment. The GitHub workflow runs the source/calculation checks before exporting.
+Regular Shiny starts and renders the source-based map and tables. Local browser-only Shinylive checks passed. The [GitHub build and deployment](https://github.com/shunchonabayashi/hotspot-explorer/actions/runs/40788531911) passed its source/calculation checks, static export and Pages deployment.
+
+The public site was checked in a fresh Edge browser session after deployment. All checks passed: real Sunamganj default data and national rank; five selectable district polygons and 64 locator polygons; selecting Sylhet by polygon click; count versus share; national versus five-district comparison; changed cutoff and reset; both downloads; selected-district report settings, HTML metadata and source attribution; 64-row CSV; no page-width overflow at 390 pixels. No District A or Country X substitute data appear in the app.
 
 See `app/data/provenance.json` for exact source URLs, hashes and processing notes. The original fictional demonstration remains accessible only through Git history; it is not mixed into the real-data pilot.
