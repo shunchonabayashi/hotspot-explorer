@@ -1,5 +1,6 @@
 library(shiny)
-source('model.R', local = TRUE)
+source('model.R', local = TRUE, encoding = 'UTF-8')
+source('fictional.R', local = TRUE, encoding = 'UTF-8')
 # Posit's Shinylive/Chromium download compatibility workaround.
 browser_download <- function(...) {
   button <- shiny::downloadButton(...); button$attribs$download <- NULL; button
@@ -18,7 +19,7 @@ source_links <- function() tagList(
   p(a('Download source flood-exposure CSV', href = 'https://datacatalogfiles.worldbank.org/ddh-published/0066820/DR0095355/adm2_flood_exposure_15cm_1in100.csv', target = '_blank', rel = 'noopener')),
   p(a('World Bank Official Boundaries', href = 'https://datacatalog.worldbank.org/search/dataset/0038272/world-bank-official-boundaries', target = '_blank', rel = 'noopener')),
   p('Attribution: World Bank Space2Stats / WorldPop / Fathom v3; World Bank Official Boundaries. Both published datasets are CC BY 4.0. This pilot recalculates shares and ranks and simplifies map geometry.'))
-ui <- fluidPage(
+real_ui <- fluidPage(
   tags$head(tags$meta(name = 'viewport', content = 'width=device-width, initial-scale=1'),
     tags$meta(name = 'robots', content = 'noindex, nofollow, noarchive'), tags$link(rel = 'stylesheet', href = 'style.css')),
   div(class = 'masthead', div(class = 'eyebrow', 'REAL-DATA PILOT | BANGLADESH'), h1('Food–Energy–Infrastructure Hotspot Explorer'), p('Sunamganj and neighbouring districts • Public modelled flood-exposure data')),
@@ -52,7 +53,38 @@ ui <- fluidPage(
           p('Data are joined to World Bank district boundaries by ADM2CD_c, with complete 64-district code coverage. Geometry was retrieved in October 2026; exact equivalence to the exposure layer’s boundary vintage is not established. Geometry is repaired where needed and simplified for display. Neighbours are identified from shared boundaries before simplification.'),
           p('High exposure alone does not establish vulnerability, loss, infrastructure need or an investment gap. Validate service networks, project locations, relevant coverage and other providers before making investment claims. Boundaries and names are for visualization and imply no endorsement.'))))),
   div(class = 'footer', 'R Shiny / Shinylive • Real-data pilot prepared 29 October 2026 • World Bank sources, CC BY 4.0'))
+ui <- tagList(
+  tags$script(HTML(r"(
+    $(document).on('shiny:connected', function() {
+      Shiny.addCustomMessageHandler('explorer-view', function(view) {
+        try {
+          const url = new URL(window.top.location.href);
+          url.searchParams.set('view', view);
+          window.top.history.replaceState(null, '', url);
+        } catch (e) { /* Embedded cross-origin hosts can keep using the visible switch. */ }
+      });
+      let search = window.location.search;
+      try { search = window.top.location.search; } catch (e) {}
+      Shiny.setInputValue('initial_view', new URLSearchParams(search).get('view') || 'real', {priority:'event'});
+    });
+  )")),
+  div(class = 'view-switch',
+    radioButtons('view', 'Choose an Explorer view', inline = TRUE,
+      choices = c('Real-data pilot | Bangladesh flood exposure' = 'real',
+                  'Framework illustration | FICTIONAL data' = 'illustration'), selected = 'real'),
+    p('Two complementary views: the illustration explains the complete framework; the pilot shows the narrower assessment supported by actual data.')),
+  conditionalPanel("input.view === 'real'", real_ui),
+  conditionalPanel("input.view === 'illustration'", fictional$ui)
+)
 server <- function(input, output, session) {
+  moduleServer('fictional', fictional$server)
+  observeEvent(input$initial_view, {
+    if (input$initial_view %in% c('real', 'illustration'))
+      updateRadioButtons(session, 'view', selected = input$initial_view)
+  }, once = TRUE)
+  observeEvent(input$view, {
+    session$sendCustomMessage('explorer-view', input$view)
+  }, ignoreInit = TRUE)
   data <- reactive(assess(all_districts, input$cutoff, input$metric, input$comparison))
   selected <- reactive(data()[match(input$district, data()$id), , drop = FALSE])
   observeEvent(input$district_click, { if (input$district_click %in% pilot$id) updateSelectInput(session, 'district', selected = input$district_click) })

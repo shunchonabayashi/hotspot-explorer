@@ -4,7 +4,14 @@
 
 The app requests `noindex, nofollow, noarchive` from search engines. It remains public and accessible through its link; these settings are not authentication or a guarantee of removal from search results. Crawling is left allowed so engines can read the directive. The public GitHub repository remains separately discoverable.
 
-An R Shiny / Shinylive real-data pilot for **Sunamganj, Bangladesh**, and four neighbouring Bangladesh districts: Habiganj, Kishoreganj, Netrakona and Sylhet. Prepared 29 October 2026. It replaces the fictional District A demonstration.
+An R Shiny / Shinylive real-data pilot for **Sunamganj, Bangladesh**, and four neighbouring Bangladesh districts: Habiganj, Kishoreganj, Netrakona and Sylhet. Prepared 29 October 2026. A clearly labelled switch also opens the fictional District A framework illustration. The real-data pilot remains the default.
+
+## Two clearly labelled views
+
+- **[Real-data pilot | Bangladesh flood exposure](https://shunchonabayashi.github.io/hotspot-explorer/?view=real)** is the default. It contains sourced modelled exposure estimates, actual boundaries and explicit unassessed components.
+- **[Framework illustration | FICTIONAL data](https://shunchonabayashi.github.io/hotspot-explorer/?view=illustration)** restores District A and six pressures to explain the intended full framework. All example values, boundaries, projects, consequences and costs are invented. Its percentiles are supplied illustration values, not computed national data.
+
+The switch is always visible above the view. Each view has separate controls and downloads; fictional data do not enter real-data calculations. Direct links select the desired view. Demonstrate the fictional view to explain the destination, then use the real-data view to discuss evidence and remaining work.
 
 ## What is real and what is assessed?
 

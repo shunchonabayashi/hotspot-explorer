@@ -23,3 +23,11 @@ out <- assessment_export(s, 90, 'share', 'country', d$id[sun], '2026-10-29 00:00
 stopifnot(nrow(out) == 64, sum(out$selected_district) == 1, all(out$investment_gap == 'Not assessed'))
 stopifnot(all(out$future_climate_changes == 'Not assessed'), all(out$response_cost == 'Not assessed'))
 cat('64-district source, formula, neighbour, screening and export checks passed.\n')
+
+# Restored illustration is explicitly isolated from the 64-district real model.
+fiction <- new.env(parent = globalenv())
+source('app/fictional_model.R', local = fiction, encoding = 'UTF-8')
+f <- fiction$assess(fiction$district_data(), 90)
+stopifnot(nrow(f) == 6, identical(f$hotspot, c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE)))
+stopifnot(nrow(district_data('app/data/districts.csv')) == 64)
+cat('Fictional data isolation checks passed.\n')
