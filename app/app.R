@@ -25,6 +25,8 @@ ui <- fluidPage(
   div(class = 'demo-banner', strong('Real data, limited assessment'), ' — 2020 population exposed to modelled flooding. Future climate changes, service disruption and investment gaps are not yet assessed.'),
   div(class = 'workspace',
     tags$aside(class = 'controls card', h2('Customize assessment'),
+      selectInput('country', 'Country', choices = c('Bangladesh' = 'BGD'), selected = 'BGD'),
+      p(class = 'hint', 'Bangladesh is the only country with data in this pilot. Additional countries can be added as their data are prepared.'),
       selectInput('district', 'District', choices = setNames(pilot$id, pilot$district), selected = default_id),
       selectInput('metric', 'Map and screening indicator', choices = c('Population share exposed (%)' = 'share', 'People exposed (count)' = 'count')),
       selectInput('comparison', 'Percentile comparison', choices = c('Bangladesh: all 64 districts' = 'country', 'Pilot area: five districts' = 'pilot')),
